@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBBaoHiemModelStoreContainer" CdmEntityContainer="DBBaoHiemEntities">
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="DBBaoHiemModel.Information">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="idLoaiBaoHiem" ColumnName="idLoaiBaoHiem" />
+          <ScalarProperty Name="CreateDay" ColumnName="CreateDay" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiBaoHiems">
+      <EntityTypeMapping TypeName="DBBaoHiemModel.LoaiBaoHiem">
+        <MappingFragment StoreEntitySet="LoaiBaoHiem">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="LoaiBaoHiem1" ColumnName="LoaiBaoHiem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

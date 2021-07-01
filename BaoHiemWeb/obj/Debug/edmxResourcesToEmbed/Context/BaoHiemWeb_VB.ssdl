@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBBaoHiemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKhachHang" Type="nvarchar" MaxLength="100" />
+    <Property Name="idLoaiBaoHiem" Type="int" />
+    <Property Name="CreateDay" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LoaiBaoHiem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiBaoHiem" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_Information_LoaiBaoHiem">
+    <End Role="LoaiBaoHiem" Type="Self.LoaiBaoHiem" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiBaoHiem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="idLoaiBaoHiem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBBaoHiemModelStoreContainer">
+    <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiBaoHiem" EntityType="Self.LoaiBaoHiem" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Information_LoaiBaoHiem" Association="Self.FK_Information_LoaiBaoHiem">
+      <End Role="LoaiBaoHiem" EntitySet="LoaiBaoHiem" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

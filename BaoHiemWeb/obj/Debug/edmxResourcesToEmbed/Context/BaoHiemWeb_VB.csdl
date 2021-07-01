@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBBaoHiemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Information">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idLoaiBaoHiem" Type="Int32" />
+    <Property Name="CreateDay" Type="DateTime" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LoaiBaoHiem" Relationship="Self.FK_Information_LoaiBaoHiem" FromRole="Information" ToRole="LoaiBaoHiem" />
+  </EntityType>
+  <EntityType Name="LoaiBaoHiem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoaiBaoHiem1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Information" Relationship="Self.FK_Information_LoaiBaoHiem" FromRole="LoaiBaoHiem" ToRole="Information" />
+  </EntityType>
+  <Association Name="FK_Information_LoaiBaoHiem">
+    <End Role="LoaiBaoHiem" Type="Self.LoaiBaoHiem" Multiplicity="0..1" />
+    <End Role="Information" Type="Self.Information" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiBaoHiem">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Information">
+        <PropertyRef Name="idLoaiBaoHiem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBBaoHiemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Information" EntityType="Self.Information" />
+    <EntitySet Name="LoaiBaoHiems" EntityType="Self.LoaiBaoHiem" />
+    <AssociationSet Name="FK_Information_LoaiBaoHiem" Association="Self.FK_Information_LoaiBaoHiem">
+      <End Role="LoaiBaoHiem" EntitySet="LoaiBaoHiems" />
+      <End Role="Information" EntitySet="Information" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
